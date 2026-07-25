@@ -173,6 +173,15 @@ nav.primary-nav a:hover { color: var(--cyan-bright); }
 .service-card ul { margin: 14px 0 0; padding-left: 18px; color: var(--slate); font-size: 14.5px; }
 .service-card li { margin-bottom: 6px; }
 
+.service-group-label {
+  display: flex; align-items: center; gap: 14px;
+  margin: 0 0 26px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--navy); font-weight: 700;
+}
+.service-group-label::after { content: ""; flex: 1; height: 1px; background: rgba(14,26,43,0.12); }
+.service-group-label span.tag { background: var(--mist); color: var(--cyan); padding: 4px 10px; border-radius: 999px; font-size: 11px; }
+.services-block + .services-block { margin-top: 56px; }
+
 /* ---------------- Process ---------------- */
 .process-band { background: var(--navy); color: var(--white); }
 .process-band .section-head h2 { color: var(--white); }
