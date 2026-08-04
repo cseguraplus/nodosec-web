@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Claudio Segura · NODO SEC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a202c;
+    --navy-2:#232b3d;
+    --teal:#5ed6be;
+    --teal-dark:#3ab09a;
+    --off:#f5f7f8;
+    --gray:#8b96a3;
+    --line:rgba(255,255,255,0.09);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{
+    background:var(--navy);
+    font-family:'Poppins',sans-serif;
+    color:var(--off);
+    -webkit-font-smoothing:antialiased;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+  }
+  .card{
+    width:100%;
+    max-width:460px;
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:56px 28px 40px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(94,214,190,0.12), transparent 60%),
+      var(--navy);
+    overflow:hidden;
+  }
+  .hex-field{
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(120deg, transparent 0 38px, var(--line) 38px 39px),
+      repeating-linear-gradient(60deg, transparent 0 38px, var(--line) 38px 39px);
+    opacity:.5;
+    mask-image:radial-gradient(circle at 50% 20%, black, transparent 75%);
+  }
+  .icon-wrap{
+    position:relative;
+    width:118px; height:118px;
+    margin:0 auto 22px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sweep{
+    position:absolute; inset:-14px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(94,214,190,0) 0deg, rgba(94,214,190,0.55) 28deg, rgba(94,214,190,0) 70deg);
+    animation:spin 3.4s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ .sweep{ animation:none; } }
+  .icon-wrap svg{ position:relative; z-index:2; width:100%; height:100%; }
+
+  .wordmark{
+    font-weight:800;
+    font-size:30px;
+    letter-spacing:0.5px;
+    margin-bottom:4px;
+  }
+  .wordmark span{ color:var(--teal); }
+  .sub{
+    font-size:12px;
+    letter-spacing:3px;
+    color:var(--gray);
+    font-weight:500;
+    margin-bottom:22px;
+  }
+
+  .name{
+    font-size:26px;
+    font-weight:700;
+    margin-top:8px;
+  }
+  .role{
+    color:var(--teal);
+    font-weight:500;
+    font-size:15px;
+    margin-top:4px;
+  }
+
+  /* ---------- CTA ROW ---------- */
+  .cta-row{
+    display:flex;
+    gap:10px;
+    padding:22px 20px 8px;
+    background:var(--navy);
+  }
+  .btn{
+    flex:1;
+    text-align:center;
+    padding:14px 8px;
+    border-radius:14px;
+    font-weight:600;
+    font-size:13px;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    border:1px solid var(--line);
+    color:var(--off);
+    transition:transform .15s ease;
+  }
+  .btn:active{ transform:scale(0.96); }
+  .btn.primary{
+    background:var(--teal);
+    color:var(--navy);
+    border-color:transparent;
+  }
+  .btn svg{ width:20px; height:20px; }
+
+  /* ---------- BODY SECTIONS ---------- */
+  .section{
+    background:var(--off);
+    color:var(--navy);
+    padding:34px 26px;
+  }
+  .section + .section{ border-top:1px solid #e6e9ea; }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:2.5px;
+    font-weight:600;
+    color:var(--teal-dark);
+    margin-bottom:10px;
+  }
+  .section h2{
+    font-size:19px;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  .section p{
+    font-size:14.5px;
+    line-height:1.6;
+    color:#4a5560;
+  }
+
+  .services{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-top:18px;
+  }
+  .service{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    background:#fff;
+    border:1px solid #e6e9ea;
+    border-radius:14px;
+    padding:16px;
+  }
+  .service .ic{
+    flex:0 0 auto;
+    width:38px; height:38px;
+    border-radius:10px;
+    background:rgba(94,214,190,0.14);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .service .ic svg{ width:19px; height:19px; stroke:var(--teal-dark); }
+  .service h3{ font-size:14.5px; font-weight:600; margin-bottom:3px; }
+  .service p{ font-size:13px; margin:0; }
+
+  /* dark section for contact */
+  .contact-section{
+    background:var(--navy);
+    color:var(--off);
+    padding:34px 26px 46px;
+  }
+  .contact-section .eyebrow{ color:var(--teal); }
+  .contact-list{ margin-top:16px; display:flex; flex-direction:column; gap:18px; }
+  .c-row{ display:flex; align-items:center; gap:14px; }
+  .c-row .dot{ width:8px; height:8px; border-radius:50%; background:var(--teal); flex:0 0 auto; }
+  .c-row .label{ font-size:11px; letter-spacing:1.5px; color:var(--gray); font-weight:500; }
+  .c-row .value{ font-size:15.5px; font-weight:500; word-break:break-word; }
+  .c-row a{ color:var(--off); text-decoration:none; }
+
+  .footer{
+    text-align:center;
+    padding:22px 20px 34px;
+    background:var(--navy);
+    color:var(--gray);
+    font-size:12px;
+    border-top:1px solid var(--line);
+  }
+  .footer b{ color:var(--teal); }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hex-field"></div>
+    <div class="icon-wrap">
+      <div class="sweep"></div>
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="100,20 165,58 165,142 100,180 35,142 35,58"
+                 fill="none" stroke="#f5f7f8" stroke-width="11" stroke-linejoin="round"/>
+        <circle cx="100" cy="20" r="7" fill="#f5f7f8"/>
+        <circle cx="165" cy="58" r="7" fill="#f5f7f8"/>
+        <circle cx="165" cy="142" r="7" fill="#f5f7f8"/>
+        <circle cx="100" cy="180" r="7" fill="#f5f7f8"/>
+        <circle cx="35" cy="142" r="7" fill="#f5f7f8"/>
+        <circle cx="35" cy="58" r="7" fill="#f5f7f8"/>
+        <circle cx="100" cy="20" r="4.4" fill="#5ed6be"/>
+        <circle cx="165" cy="142" r="4.4" fill="#5ed6be"/>
+        <circle cx="35" cy="142" r="4.4" fill="#5ed6be"/>
+        <line x1="100" y1="20" x2="100" y2="63" stroke="#5ed6be" stroke-width="3"/>
+        <line x1="165" y1="142" x2="128" y2="119" stroke="#5ed6be" stroke-width="3"/>
+        <line x1="35" y1="142" x2="72" y2="119" stroke="#5ed6be" stroke-width="3"/>
+        <circle cx="100" cy="100" r="37" fill="#5ed6be"/>
+        <circle cx="100" cy="100" r="18.5" fill="#1a202c"/>
+        <circle cx="93" cy="93" r="5.2" fill="#ffffff"/>
+      </svg>
+    </div>
+    <div class="wordmark">NODO <span>SEC</span></div>
+    <div class="sub">INSTALACIONES</div>
+    <div class="name">Claudio Segura</div>
+    <div class="role">Director y Especialista Técnico</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-row">
+    <a class="btn primary" href="https://wa.me/525549768719?text=Hola%20Claudio%2C%20quisiera%20una%20cotizaci%C3%B3n%20de%20c%C3%A1maras%20de%20seguridad" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10.1 9 9.6 7.7 9.4 7.2c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.6 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4 15 3.5 13.5 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.5-8.5 8.5z"/></svg>
+      Cotizar
+    </a>
+    <a class="btn" href="#contacto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Contacto
+    </a>
+    <a class="btn" id="vcardBtn" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      Guardar
+    </a>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <div class="eyebrow">QUIÉNES SOMOS</div>
+    <h2>Seguridad perimetral con instalación profesional</h2>
+    <p>En NODO SEC diseñamos e instalamos sistemas de videovigilancia, control de acceso y cableado estructurado para hogares y negocios. Evaluamos tu equipo actual, recomendamos hardware compatible y garantizamos una instalación limpia, funcional y a la medida de tu espacio.</p>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section">
+    <div class="eyebrow">SERVICIOS</div>
+    <h2>Lo que hacemos</h2>
+    <div class="services">
+      <div class="service">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>
+        </div>
+        <div>
+          <h3>CCTV / Videovigilancia</h3>
+          <p>Cámaras HD y ColorVu, DVR/NVR, grabación y monitoreo remoto desde tu celular.</p>
+        </div>
+      </div>
+      <div class="service">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <h3>Control de Acceso</h3>
+          <p>Chapas magnéticas, biométricos y tarjetas para controlar quién entra y sale.</p>
+        </div>
+      </div>
+      <div class="service">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h16"/><circle cx="19" cy="12" r="2"/></svg>
+        </div>
+        <div>
+          <h3>Cableado Estructurado</h3>
+          <p>Instalación ordenada, con opción de acabado oculto tipo canaleta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIGITAL SERVICES -->
+  <div class="section">
+    <div class="eyebrow">SERVICIOS DIGITALES</div>
+    <h2>Más allá de la instalación</h2>
+    <div class="services">
+      <div class="service">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        </div>
+        <div>
+          <h3>Monitoreo remoto y app</h3>
+          <p>Acceso a tus cámaras desde el celular, notificaciones y respaldo en la nube.</p>
+        </div>
+      </div>
+      <div class="service">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <div>
+          <h3>Google Ads</h3>
+          <p>Campañas para que clientes te encuentren cuando buscan seguridad en tu zona.</p>
+        </div>
+      </div>
+      <div class="service">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div>
+          <h3>Redes sociales</h3>
+          <p>Contenido y presencia en redes para mostrar instalaciones y generar confianza.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contacto">
+    <div class="eyebrow">CONTACTO</div>
+    <h2 style="color:var(--off)">Hablemos de tu proyecto</h2>
+    <div class="contact-list">
+      <div class="c-row">
+        <div class="dot"></div>
+        <div>
+          <div class="label">WHATSAPP</div>
+          <div class="value"><a href="https://wa.me/525549768719" target="_blank" rel="noopener">55 4976 8719</a></div>
+        </div>
+      </div>
+      <div class="c-row">
+        <div class="dot"></div>
+        <div>
+          <div class="label">COTIZACIONES EN LÍNEA</div>
+          <div class="value"><a href="https://cseguraplus.github.io/nodosec-web/" target="_blank" rel="noopener">cseguraplus.github.io/nodosec-web</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <b>NODO SEC</b> Instalaciones · CCTV · Control de Acceso · Cableado Estructurado
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('vcardBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    const vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:Segura;Claudio;;;',
+      'FN:Claudio Segura',
+      'ORG:NODO SEC Instalaciones',
+      'TITLE:Director y Especialista Técnico',
+      'TEL;TYPE=CELL:+525549768719',
+      'URL:https://cseguraplus.github.io/nodosec-web/',
+      'END:VCARD'
+    ].join('\n');
+    const blob = new Blob([vcard], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Claudio_Segura_NodoSec.vcf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
